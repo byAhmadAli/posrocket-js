@@ -1,4 +1,4 @@
-#POSRocket JS
+# POSRocket JS
 
 A simple task for [POSRocket](http://posrocket.com) written in HTML, css, JavaScript.
 
