@@ -1,0 +1,52 @@
+<html>
+<head>
+	<title>Paypal checkout</title>
+	<link rel="stylesheet" type="text/css" href="src/css/app.css">
+	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.3.2/css/simple-line-icons.css">
+</head>
+<body>
+	<div class="container">
+		<div class="left">
+			<div class="info-box">
+				<div class="receipt">
+					Receipt ID </br><span class="receipt_id"></span>
+				</div>
+				<div class="entry">
+					<i class="icon-wallet" aria-hidden="true"></i>
+					<p>Amount:</br><span><span class="amount"></span> <span class="currency"></span></span></p>
+				</div>
+				<div class="entry">
+					<i class="icon-calendar" aria-hidden="true"></i>
+					<p>Date:</br><span id="formattedDate"></span></p>
+				</div>
+				<div class="entry">
+					<i class="icon-star" aria-hidden="true"></i>
+					<p>Issuer:</br><span id="issuer"></span></p>
+				</div>
+			</div>
+		</div>
+		<div class="right">
+			<div class="content">
+				<div class="header">
+					<img src="https://s3.amazonaws.com/akhtaboot/photos/446394/imageedit_1_3620953772_company_large.png">
+					<h4 id="date"></h4>
+				</div>
+				<div class="main">
+					<h3 id="itemization"></h3>
+					<h5>Total: <span class="amount"></span> <span class="currency"></span></h5>
+				</div>
+				<div class="message">
+					<p>Hello,</br>You sent a payment of <span class="amount"></span> <span class="currency"></span> to <span class="receipt_id"></span></p>
+					<h6>It may take a few moments for this</br>transaction to appear in your account.</h6>
+				</div>
+				<div class="footer">
+					<a href="#">www.posrocket.com/help</a>
+					<h6>Transaction ID: <span id="transactionID"></span></h6>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="src/js/app.js"></script>
+</body>
+</html>

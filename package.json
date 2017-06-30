@@ -1,0 +1,10 @@
+{
+  "name": "posrocket-js",
+  "version": "0.1.0",
+  "description": "posrocket-js.",
+  "author": "Ahmad Ali <hello@ahmadali.me>",
+  "devDependencies": {
+    
+  },
+  "license": "MIT"
+}
