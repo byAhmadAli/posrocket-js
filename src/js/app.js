@@ -126,5 +126,5 @@ posrocket.prototype = {
 };
 
 let transaction = new posrocket('get',{
-  url: 'http://localhost:30303/transaction.json'
+  url: 'http://localhost:3030/transaction.json'
 });
