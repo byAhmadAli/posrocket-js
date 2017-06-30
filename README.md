@@ -13,7 +13,7 @@ A simple task for [POSRocket](http://posrocket.com) written in HTML, css, JavaSc
 $ npm install http-server -g
 $ git clone https://github.com/byAhmadAli/posrocket-js.git
 $ cd posrocket-js
-$ http-server
+$ http-server -p 3030
 ```
 
-then go to http://127.0.0.1:8080
+then go to http://localhost:3030
