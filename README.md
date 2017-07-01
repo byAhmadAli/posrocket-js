@@ -17,3 +17,5 @@ $ http-server -p 3030
 ```
 
 then go to http://localhost:3030
+
+and you can see the other implantation http://localhost:3030/other-example.html

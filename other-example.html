@@ -47,9 +47,15 @@
 			</div>
 		</div>
 	</div>
-	<script type="text/javascript" src="src/js/app.js" class="posrocket-js" data-business-id="3f522ee8-7e69-4d78-aeb5-5278aaf21558" data-transaction-id="37a5f57a-48bc-483d-91b7-88c8b1b9509c" data-receipt-id="Cj9uohMQNVflSq7taYtVRk" data-serial-number="C1-498" data-method="get" data-url="http://localhost:3030/transaction.json"></script>
+	<script type="text/javascript" src="src/js/app.js" class="posrocket-js"></script>
 	<script type="text/javascript">
-		let transaction = new posrocket();
+		let transaction = new posrocket('get',{
+			url: 'http://localhost:3030/transaction.json',
+			businessId: '3f522ee8-7e69-4d78-aeb5-5278aaf21558',
+			transactionId: '37a5f57a-48bc-483d-91b7-88c8b1b9509c',
+			receiptId: 'Cj9uohMQNVflSq7taYtVRk',
+			serialNumber: 'C1-498'
+		});
 	</script>
 </body>
 </html>

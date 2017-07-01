@@ -1,11 +1,11 @@
-let isEmpty = function(obj) {
+function _isEmpty(obj) {
   for(let prop in obj) {
     if(obj.hasOwnProperty(prop))
       return false;
   }
   return JSON.stringify(obj) === JSON.stringify({});
 };
-let getFormattedDate = function(theDate) {
+function _getFormattedDate(theDate) {
   var monthNames = ["January", "February", "March", "April", 
     "May", "June","July", "August", "September", "October", 
     "November", "December"];
@@ -13,20 +13,44 @@ let getFormattedDate = function(theDate) {
   var month = (1 + date.getMonth()).toString();
   var day = date.getDate().toString();
   return monthNames[month] + ' ' + day;
-}
+};
 
 let posrocket = function(){
+  this.method = null;
+  this.url = null;
+  this.businessID = null
+  this.transactionID = null;
+  this.receiptID = null;
+  this.serialNumber = null;
 
-  this.method = arguments[0];
+  let script = document.querySelector('script[class="posrocket-js"]');
 
-  if ((typeof arguments === 'object') && (typeof arguments[1]  === 'object')) {
-    this.url = arguments[1].url;
+  if(!_isEmpty(script.dataset)){
+    this.method = script.dataset.method;
+    this.url = script.dataset.url;
+    this.businessID = script.dataset.businessId;
+    this.transactionID = script.dataset.transactionId;
+    this.receiptID = script.dataset.receiptId;
+    this.serialNumber = script.dataset.serialNumber;
+  }else{
+    this.method = arguments[0];
+
+    if ((typeof arguments === 'object') && (typeof arguments[1]  === 'object')) {
+      this.url = arguments[1].url;
+      this.businessID = arguments[1].businessId;
+      this.transactionID = arguments[1].transactionId;
+      this.receiptID = arguments[1].receiptId;
+      this.serialNumber = arguments[1].serialNumber;
+    }
   }
+  
 
   if(!this.url) {
     console.warn('Please make sure that you add the url(Rest API).');
     return;
   }
+
+  this.valid = false;
 
   this.init();
 }
@@ -56,7 +80,7 @@ posrocket.prototype = {
         if (status == 200) {
           if(xhr.response){
             let Data = xhr.response.data;
-            if(isEmpty(Data)){
+            if(_isEmpty(Data)){
               console.warn('File has not data.')
               xhr.abort();
               return;
@@ -97,7 +121,7 @@ posrocket.prototype = {
     let date = document.getElementById('date');
     date.innerHTML = Data.creation_time;
     let formattedDate = document.getElementById('formattedDate')
-    formattedDate.innerHTML = getFormattedDate(Data.creation_time);
+    formattedDate.innerHTML = _getFormattedDate(Data.creation_time);
 
     let issuer = document.getElementById('issuer');
     issuer.innerHTML = Data.creator.name;
@@ -110,21 +134,27 @@ posrocket.prototype = {
 
   },
 
+  validate: function(Data){
+    if(this.transactionID ===  Data.transaction_id && this.businessID === Data.business_id &&
+      this.receiptID === Data.receipt_id && this.serialNumber === Data.serial_number){
+      this.fetchData(Data);
+    }else{
+      console.warn('not valid!')
+    }
+  },
+
   init: function(){
 
     if(this.method == 'get'){
 
       this.getJSON().then(function(data) {
         let Data = data;
-        this.fetchData(Data);
+        this.validate(Data);
       }.bind(this));
     }else{
       console.warn('Please make sure that name of method is exsist. Follow the documantation!')
     }
 
   }
-};
 
-let transaction = new posrocket('get',{
-  url: 'http://localhost:3030/transaction.json'
-});
+};
